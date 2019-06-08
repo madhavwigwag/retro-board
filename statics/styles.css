@@ -1,0 +1,74 @@
+/* General */
+body{
+    background-color: #f7f8f9;
+}
+
+/* Helpers */
+.pointer{
+    cursor: pointer;
+}
+
+/* Landing */
+
+.landing .form-area { 
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.landing .form-area form{
+    width: 80%;
+    margin: auto;
+}
+
+.landing .btn {
+    margin-top: 20px;
+}
+
+/* Board */
+
+.list-body p{
+    color: #2d2d2d;
+}
+
+.list-heading{
+    padding: 5px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 2px solid #e35141; */
+
+}
+
+.board-name{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Cards */
+.card{
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.card .comment{
+    margin: 15px;
+}
+.card .card-actions{
+    position: absolute;
+    right: 10px;
+}
+.card .delete-card{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* Profile */
+
+.profile .heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
