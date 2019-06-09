@@ -1,10 +1,5 @@
 # Retro Board 
 
-## Create Board flow
-    - Name Board. 
-    - Add lists.
-    - User is shown the board. 
-    - User can share the link of the board. 
 
 ## Retro Board Experience
 ### Card Properties
@@ -18,3 +13,14 @@
 ### Profile
     - User can see boards he was a part of. 
     - user can create a board.
+
+### Create Board flow
+    - Name Board. 
+    - Add lists.
+    - User is shown the board. 
+    - The board is added to the users profile.
+    - User can share the link of the board. 
+
+### Join Board Flow
+    - User can see the name of the board. 
+    - The board is added to the user's profile.
