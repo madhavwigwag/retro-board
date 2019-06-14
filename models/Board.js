@@ -4,17 +4,25 @@ const BoardSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    lists: [{
-        name: {
-            type: String,
-            required: true
-        },
-        cards: [{
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
+    lists: [
+        { name: String }
+    ],
+    createdOn: {
+        type: Date,
+        default: Date.now()
+    },
+    visitors: [
+        {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "card"
-        }]
-
-    }]
+            ref: "user"
+        }
+    ]
 });
+
+
 
 module.exports = Board = mongoose.model('board', BoardSchema);

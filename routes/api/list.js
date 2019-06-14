@@ -3,8 +3,9 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 
 
-const { createCard } = require("./controller/card");
+const { getList } = require("./controller/list");
 
-router.post("/", auth, createCard);
+router.get("/:listid", auth, getList);
+
 
 module.exports = router;
