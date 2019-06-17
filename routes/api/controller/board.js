@@ -57,7 +57,7 @@ const getBoardDetailsById = async (req, res) => {
     if (!confirmMongooseIdValidity(boardId)) return res.status(400).send({ msg: "Board ID is invalid." })
 
     try {
-        const board = await Board.findById(boardId);
+        const board = await Board.findById(boardId).populate("createdBy", ["name"]);
 
         if (!board) {
             return res.status(400).send({ msg: "Board does not exist." })
