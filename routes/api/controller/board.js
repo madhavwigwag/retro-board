@@ -1,5 +1,6 @@
 const Board = require("../../../models/Board");
 const List = require("../../../models/List");
+const { confirmMongooseIdValidity } = require("../helpers");
 
 const createBoard = async (req, res) => {
     const { name, lists } = req.body;
@@ -12,7 +13,7 @@ const createBoard = async (req, res) => {
     try {
         let board = await Board.findOne({ name });
         if (board) {
-            return res.status(400).send({ msg: "Board with the same name already exists. Please Choose another name" })
+            return res.status(400).send({ errors: [{ msg: "Board with the same name already exists. Please Choose another name" }] })
         }
         board = new Board(boardData);
 
@@ -25,7 +26,7 @@ const createBoard = async (req, res) => {
         res.json(board)
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        res.status(500).send({ errors: [{ msg: 'Invalid Credentials' }] });
     }
 
 
@@ -41,13 +42,40 @@ const createListById = async (id, name, board) => {
     const list = new List(listData);
     try {
         await list.save();
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        return res.status(500).send({ errors: [{ msg: 'Server Error' }] });
     }
 }
 
+const getBoardDetailsById = async (req, res) => {
+    const boardId = req.params.boardId;
+
+    //Checking if board id is valid. 
+    //Incase of invalid ID. MongoDB Returns and error saying cast to objectID failed. 
+    
+    if (!confirmMongooseIdValidity(boardId)) return res.status(400).send({ msg: "Board ID is invalid." })
+
+    try {
+        const board = await Board.findById(boardId);
+
+        if (!board) {
+            return res.status(400).send({ msg: "Board does not exist." })
+        }
+        res.send(board);
+
+
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send({ errors: [{ msg: 'Server Error' }] });
+    }
+
+
+}
+
 module.exports = {
-    createBoard
+    createBoard,
+    getBoardDetailsById
 }
 
