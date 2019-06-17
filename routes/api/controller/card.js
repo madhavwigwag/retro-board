@@ -20,7 +20,7 @@ const createCard = async (req, res) => {
         addCardToList(card._id, list)
 
         res.json(card);
-    } catch (error) {
+    } catch (err){
         console.error(err.message);
         res.status(500).send('Server Error');
     }
@@ -36,7 +36,7 @@ const addCardToList = async (cardId, listId) => {
         list.save();
         console.log(list);
 
-    } catch (error) {
+    } catch (err){
         console.error(err.message);
         res.status(500).send('Server error');
     }

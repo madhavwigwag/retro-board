@@ -39,7 +39,8 @@ const createProfile = async (req, res) => {
       );
   
       if (!profile) {
-        return res.status(400).json({ msg: 'There is no profile for this user' });
+        createProfile(req,res);
+        //return res.status(400).json({ msg: 'There is no profile for this user' });
       }
   
       res.json(profile);
