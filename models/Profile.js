@@ -7,8 +7,9 @@ const ProfileSchema = new mongoose.Schema({
     boards: [
         {
             boardName: { type: String },
-            createdBy: { type: String },
-            createdOn: { type: Date }
+            createdBy: { type: mongoose.Schema.Types.ObjectId },
+            createdOn: { type: String },
+            boardId: { type: mongoose.Schema.Types.ObjectId }
         }
     ]
 });

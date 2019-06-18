@@ -4,7 +4,6 @@ const getList = async (req, res) => {
     listId = req.params.listid;
 
     const list = await List.findById(listId).populate("cards")
-    console.log(list)
     res.send(list)
 }
 

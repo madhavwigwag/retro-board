@@ -24,3 +24,8 @@
 ### Join Board Flow
     - User can see the name of the board. 
     - The board is added to the user's profile.
+
+
+## Issues
+    ### Client Side
+        When user creates board, the board component does not render. URL changes though!. 

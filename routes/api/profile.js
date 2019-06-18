@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const { createProfile, getProfile } = require("./controller/profile")
+const { createProfile, getProfile, vistedBoard } = require("./controller/profile")
 
 
 // @route    GET api/profile/me
@@ -13,5 +13,10 @@ router.get('/', auth, getProfile);
 // @desc     Create or update user profile
 // @access   Private
 router.post('/', auth, createProfile)
+
+// @route    GET api/boardVisted
+// @desc     Add a visited board to users profile.
+// @access   Private
+router.put("/boardVisited", auth, vistedBoard)
 
 module.exports = router;

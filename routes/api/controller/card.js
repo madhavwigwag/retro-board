@@ -2,12 +2,12 @@ const Card = require("../../../models/Card");
 const List = require("../../../models/List");
 
 const createCard = async (req, res) => {
-    const { board, content, list } = req.body;
+    const { board, content, list, createdBy } = req.body;
 
     const cardData = {
         list,
         board,
-        createdBy: req.user.id,
+        createdBy,
         content
     }
 
@@ -34,13 +34,10 @@ const addCardToList = async (cardId, listId) => {
         let list = await List.findById(listId);
         list.cards.unshift(cardId);
         list.save();
-        console.log(list);
-
     } catch (err){
         console.error(err.message);
         res.status(500).send('Server error');
     }
-
 
 }
 

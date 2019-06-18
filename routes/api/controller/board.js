@@ -1,6 +1,7 @@
 const Board = require("../../../models/Board");
 const List = require("../../../models/List");
 const { confirmMongooseIdValidity } = require("../helpers");
+const {addBoardToProfile} = require("./profile")
 
 const createBoard = async (req, res) => {
     const { name, lists } = req.body;
@@ -11,13 +12,14 @@ const createBoard = async (req, res) => {
     }
 
     try {
-        let board = await Board.findOne({ name });
-        if (board) {
-            return res.status(400).send({ errors: [{ msg: "Board with the same name already exists. Please Choose another name" }] })
-        }
+        
         board = new Board(boardData);
 
         await board.save();
+        
+        //Add board to the users Profile
+        addBoardToProfile(req.user.id, board.createdBy, board.name, board.createdOn, board._id)
+
 
         //creating lists with the id. 
         const lists = board.lists;
@@ -31,6 +33,7 @@ const createBoard = async (req, res) => {
 
 
 }
+
 
 //Helper Functions
 const createListById = async (id, name, board) => {
